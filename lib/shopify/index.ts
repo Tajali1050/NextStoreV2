@@ -36,6 +36,7 @@ import {
   Collection,
   Connection,
   Image,
+  InternalRating,
   Menu,
   Page,
   Product,
@@ -177,10 +178,10 @@ const reshapeImages = (images: Connection<Image>, productTitle: string) => {
   });
 };
 
-const reshapeProduct = (
+export const reshapeProduct = (
   product: ShopifyProduct,
-  filterHiddenProducts: boolean = true
-) => {
+  filterHiddenProducts = true
+): Product | undefined => {
   if (
     !product ||
     (filterHiddenProducts && product.tags.includes(HIDDEN_PRODUCT_TAG))
@@ -188,17 +189,39 @@ const reshapeProduct = (
     return undefined;
   }
 
-  const { images, variants, ...rest } = product;
+  const {
+    images,
+    variants,
+    subtitle,
+    benefits,
+    ratingAverage,
+    internalRatings,
+    ...rest
+  } = product;
+
+  const subtitleStr = subtitle?.value || undefined;
+  const benefitsArr = benefits?.value
+    ? JSON.parse(benefits.value) as string[]
+    : [];
+  const ratingAverageNum = ratingAverage?.value
+    ? parseFloat(ratingAverage.value)
+    : undefined;
+  const internalRatingsArr = internalRatings?.value
+    ? JSON.parse(internalRatings.value) as InternalRating[]
+    : [];
 
   return {
     ...rest,
-    images: reshapeImages(images, product.title),
-    variants: removeEdgesAndNodes(variants)
+    images:          reshapeImages(images, product.title),
+    variants:        removeEdgesAndNodes(variants),
+    subtitle:        subtitleStr,
+    benefits:        benefitsArr,
+    ratingAverage:   ratingAverageNum,
+    internalRatings: internalRatingsArr,
   };
 };
 
-const reshapeProducts = (products: ShopifyProduct[]) => {
-  const reshapedProducts = [];
+const reshapeProducts = (products: ShopifyProduct[]) => {  const reshapedProducts = [];
 
   for (const product of products) {
     if (product) {

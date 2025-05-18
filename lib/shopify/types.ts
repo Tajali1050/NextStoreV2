@@ -68,9 +68,14 @@ export type Page = {
   updatedAt: string;
 };
 
-export type Product = Omit<ShopifyProduct, 'variants' | 'images'> & {
+export type Product = Omit<ShopifyProduct, 'variants' | 'images'| 
+'subtitle' | 'benefits' | 'ratingAverage' | 'internalRatings' > & {
   variants: ProductVariant[];
   images: Image[];
+  subtitle?:       string;
+  benefits?:       string[];
+  ratingAverage?:  number;
+  internalRatings?: InternalRating[];
 };
 
 export type ProductOption = {
@@ -133,6 +138,10 @@ export type ShopifyProduct = {
   seo: SEO;
   tags: string[];
   updatedAt: string;
+  subtitle?: { value: string } | null;
+  benefits?: { value: string } | null;
+  ratingAverage?: { value: string } | null;
+  internalRatings?: { value: string } | null;
 };
 
 export type ShopifyCartOperation = {
@@ -270,3 +279,14 @@ export type ShopifyProductsOperation = {
     sortKey?: string;
   };
 };
+
+export interface InternalRating {
+  image:       string;
+  rating:      number;
+  title:       string;
+  description: string;
+}
+
+export interface Metafield {
+  value: string;
+}
