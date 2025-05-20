@@ -1,4 +1,5 @@
 import imageFragment from './image';
+import { productExtrasFragment } from './productExtrasFragment';
 import seoFragment from './seo';
 
 const productFragment = /* GraphQL */ `
@@ -51,6 +52,7 @@ const productFragment = /* GraphQL */ `
         }
       }
     }
+    ...productExtrasFragment
     seo {
       ...seo
     }
@@ -59,6 +61,7 @@ const productFragment = /* GraphQL */ `
   }
   ${imageFragment}
   ${seoFragment}
+  ${productExtrasFragment}
 `;
 
 export default productFragment;
