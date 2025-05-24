@@ -290,3 +290,24 @@ export interface InternalRating {
 export interface Metafield {
   value: string;
 }
+
+export interface SiteBanner {
+  message:       string
+  ctaType:       'link' | 'copyCode' | 'none'
+  linkUrl?:      string
+  discountCode?: string
+}
+
+export interface GetSiteBannerResponse {
+  data: any;
+  metaobjects: {
+    nodes: Array<{
+      id: string
+      settings: { value: string } | null
+    }>
+  }
+}
+
+export interface SiteBannerBarProps {
+  banner: SiteBanner;
+}

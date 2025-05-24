@@ -31,10 +31,12 @@ import {
   getProductRecommendationsQuery,
   getProductsQuery
 } from './queries/product';
+import { getSiteBannerQuery } from './queries/site-banner';
 import {
   Cart,
   Collection,
   Connection,
+  GetSiteBannerResponse,
   Image,
   InternalRating,
   Menu,
@@ -56,7 +58,8 @@ import {
   ShopifyProductRecommendationsOperation,
   ShopifyProductsOperation,
   ShopifyRemoveFromCartOperation,
-  ShopifyUpdateCartOperation
+  ShopifyUpdateCartOperation,
+  SiteBanner
 } from './types';
 
 const domain = process.env.SHOPIFY_STORE_DOMAIN
@@ -521,4 +524,32 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
   }
 
   return NextResponse.json({ status: 200, revalidated: true, now: Date.now() });
+}
+
+/**
+ * Fetch and cache the site-wide banner from a metaobject.
+ */
+export async function getSiteBanner(): Promise<SiteBanner | null> {
+  'use cache'
+  cacheTag('site-banner')
+  const { body } = await shopifyFetch<GetSiteBannerResponse>({
+    query: getSiteBannerQuery,
+  })
+
+  const node = body.data.metaobjects.nodes[0]
+  const raw = node?.settings?.value
+  if (!raw) return null
+
+  try {
+    const banner = JSON.parse(raw) as SiteBanner
+
+    if (banner.ctaType === 'none') {
+      delete banner.linkUrl
+      delete banner.discountCode
+    }
+    return banner
+  } catch {
+    console.warn('Invalid JSON in banner_settings metaobject')
+    return null
+  }
 }
