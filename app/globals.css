@@ -5,6 +5,7 @@
 @plugin "@tailwindcss/typography";
 
 @import "@heroui/theme/dist/index.css";
+@import "@heroui/react/dist/index.css";
 
 @layer base {
   *,
