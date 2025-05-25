@@ -13,5 +13,6 @@ export default {
         pathname: '/s/files/**'
       }
     ]
-  }
+  },
+  transpilePackages: ['@heroui/react', '@heroui/dom-animation'],
 };

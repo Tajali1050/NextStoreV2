@@ -21,7 +21,6 @@ export function ProductDescription({ product }: { product: Product }) {
             currencyCode={product.priceRange.maxVariantPrice.currencyCode}
           />
         </div>
-
         {product.ratingAverage !== undefined && product.ratingAverage > 0 ? (
         <div className="mt-2 text-sm text-neutral-600">
           {product.ratingAverage.toFixed(1)}
