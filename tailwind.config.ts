@@ -5,11 +5,11 @@ module.exports = {
   content: [
     // ...
     // make sure it's pointing to the ROOT node_module
-    "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
+    "node_modules/@heroui/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {}, 
   },
   darkMode: "class",
-  plugins: [heroui()],
+  plugins: [ require('@heroui/theme/plugin.cjs')],
 };
