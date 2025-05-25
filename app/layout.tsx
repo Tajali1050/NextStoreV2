@@ -1,4 +1,4 @@
-import "@heroui/theme/dist/index.css";
+import "@heroui/theme/index.css";
 import { CartProvider } from 'components/cart/cart-context';
 import { Navbar } from 'components/layout/navbar';
 import { SiteBannerBar } from 'components/SiteBannerBar';
