@@ -12,7 +12,6 @@ export interface SiteBannerBarProps {
 export function SiteBannerBar({ banner }: SiteBannerBarProps) {
   const { message, ctaType, discountCode = '', linkUrl } = banner;
 
-  // Split message around the discount code if present
   const [beforeText, afterText] = React.useMemo(() => {
     if (ctaType === 'copyCode' && discountCode) {
       const idx = message.indexOf(discountCode);
@@ -23,10 +22,9 @@ export function SiteBannerBar({ banner }: SiteBannerBarProps) {
     return [message, ''];
   }, [message, discountCode, ctaType]);
 
-  // Handle copy-to-clipboard
   const handleCopy = async () => {
     try {
-      console.log('copying', discountCode);
+      await navigator.clipboard.writeText(discountCode);
       addToast({ title: 'Copied!', description: discountCode, color: 'success',  });
     } catch {
       addToast({ title: 'Copy failed', color: 'danger' });
