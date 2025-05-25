@@ -4,8 +4,6 @@
 @plugin "@tailwindcss/container-queries";
 @plugin "@tailwindcss/typography";
 
-@import "@heroui/theme/index.css";
-
 @layer base {
   *,
   ::after,
