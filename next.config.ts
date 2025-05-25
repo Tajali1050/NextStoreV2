@@ -1,9 +1,8 @@
 export default {
-  /**experimental: {
-    ppr: true,
-    inlineCss: true,
+  experimental: {
+    
     useCache: true
-  },**/
+  },
   //  output: "export",
   images: {
     formats: ['image/avif', 'image/webp'],
