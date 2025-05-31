@@ -42,7 +42,7 @@ export function ProductDescription({ product }: { product: Product }) {
           <ul className="space-y-4">
             {product.benefits.map((benefit) => (
               <li key={benefit} className="flex items-center gap-2">
-                <Image src="/Vector.png" alt="check" width={20} height={20} />
+                <Image src="/icons/Vector.png" alt="check" width={20} height={20} />
                 <span className="text-medium font-semibold text-black">{benefit}</span>
               </li>
             ))}
