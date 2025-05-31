@@ -34,7 +34,7 @@ export default function RatingStars({
             <Star className="absolute h-full w-full text-gray-300" strokeWidth={2} />
             {/* filled overlay, clipped horizontally */}
             <Star
-              className="absolute h-full w-full text-yellow-500 fill-yellow-500"
+              className="absolute h-full w-full text-warning fill-warning"
               strokeWidth={2}
               style={{ clipPath: `inset(0 ${(1 - fill) * 100}% 0 0)` }}
             />

@@ -1,10 +1,12 @@
 'use client';
 
 import { PlusIcon } from '@heroicons/react/24/outline';
+import { Button } from '@heroui/react';
 import clsx from 'clsx';
 import { addItem } from 'components/cart/actions';
 import { useProduct } from 'components/product/product-context';
 import { Product, ProductVariant } from 'lib/shopify/types';
+import Image from 'next/image';
 import { useActionState } from 'react';
 import { useCart } from './cart-context';
 
@@ -43,17 +45,26 @@ function SubmitButton({
   }
 
   return (
-    <button
+    <Button
       aria-label="Add to cart"
+      type="submit"
       className={clsx(buttonClasses, {
         'hover:opacity-90': true
       })}
     >
-      <div className="absolute left-0 ml-4">
-        <PlusIcon className="h-5" />
-      </div>
       Add To Cart
-    </button>
+      <div className="">
+        <div className="ml-2">
+        <Image 
+          src="/icons/endContent.png" 
+          alt="plus" 
+          width={20} 
+          height={20}
+          className="filter brightness-0 invert"
+        />
+        </div>
+      </div>
+    </Button>
   );
 }
 
