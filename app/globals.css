@@ -31,3 +31,29 @@ input,
 button {
   @apply focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-50;
 }
+
+@layer components {
+  .moving-border {
+    @apply relative inline-flex items-center justify-center overflow-hidden rounded-full;
+  }
+  .moving-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(90deg,#14b8a6,#f43f5e,#8b5cf6,#14b8a6);
+    background-size: 300% 300%;
+    animation: move-border 6s linear infinite;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+@keyframes move-border {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
