@@ -8,7 +8,7 @@ export type Edge<T> = {
   node: T;
 };
 
-export type Cart = Omit<ShopifyCart, 'lines'> & {
+export type Cart = Omit<ShopifyCart, "lines"> & {
   lines: CartItem[];
 };
 
@@ -68,13 +68,20 @@ export type Page = {
   updatedAt: string;
 };
 
-export type Product = Omit<ShopifyProduct, 'variants' | 'images'| 
-'subtitle' | 'benefits' | 'ratingAverage' | 'internalRatings' > & {
+export type Product = Omit<
+  ShopifyProduct,
+  | "variants"
+  | "images"
+  | "subtitle"
+  | "benefits"
+  | "ratingAverage"
+  | "internalRatings"
+> & {
   variants: ProductVariant[];
   images: Image[];
-  subtitle?:       string;
-  benefits?:       string[];
-  ratingAverage?:  number;
+  subtitle?: string;
+  benefits?: string[];
+  ratingAverage?: number;
   internalRatings?: InternalRating[];
 };
 
@@ -88,6 +95,7 @@ export type ProductVariant = {
   id: string;
   title: string;
   availableForSale: boolean;
+  image?: Image;
   selectedOptions: {
     name: string;
     value: string;
@@ -281,9 +289,9 @@ export type ShopifyProductsOperation = {
 };
 
 export interface InternalRating {
-  image:       string;
-  rating:      number;
-  title:       string;
+  image: string;
+  rating: number;
+  title: string;
   description: string;
 }
 
@@ -292,20 +300,20 @@ export interface Metafield {
 }
 
 export interface SiteBanner {
-  message:       string
-  ctaType:       'link' | 'copyCode' | 'none'
-  linkUrl?:      string
-  discountCode?: string
+  message: string;
+  ctaType: "link" | "copyCode" | "none";
+  linkUrl?: string;
+  discountCode?: string;
 }
 
 export interface GetSiteBannerResponse {
   data: any;
   metaobjects: {
     nodes: Array<{
-      id: string
-      settings: { value: string } | null
-    }>
-  }
+      id: string;
+      settings: { value: string } | null;
+    }>;
+  };
 }
 
 export interface SiteBannerBarProps {
