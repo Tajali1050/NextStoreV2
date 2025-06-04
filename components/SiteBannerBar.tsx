@@ -1,6 +1,7 @@
 "use client";
 
-import { Button, addToast } from '@heroui/react';
+import { addToast } from '@heroui/react';
+import MovingBorderButton from './MovingBorderButton';
 import clsx from 'clsx';
 import type { SiteBanner } from 'lib/shopify/types';
 import React from 'react';
@@ -43,19 +44,13 @@ export function SiteBannerBar({ banner }: SiteBannerBarProps) {
         <span className='text-small font-semibold'>{beforeText}</span>
 
         {ctaType === 'copyCode' && discountCode && (
-          <Button onPress={handleCopy} color="success" radius='full' 
-          className="bg-gradient-to-tr from-success to-yellow-500 text-white shadow-lg h-8 px-4">
-            <div className="text-white font-bold text-medium">
-            {discountCode}
-            </div>
-          </Button>
+          <MovingBorderButton onClick={handleCopy} className="bg-black">
+            <span className="font-bold text-medium">{discountCode}</span>
+          </MovingBorderButton>
         )}
 
         {ctaType === 'link' && linkUrl && (
-          <Button href={linkUrl} className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg h-8 px-4"
-          color="success" radius='full'>
-            {'SHOP NOW'}
-          </Button>
+          <MovingBorderButton href={linkUrl} className="bg-black">SHOP NOW</MovingBorderButton>
         )}
 
         <span className='text-small font-semibold'>{afterText}</span>
