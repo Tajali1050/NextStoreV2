@@ -1,6 +1,6 @@
-import imageFragment from './image';
-import { productExtrasFragment } from './productExtrasFragment';
-import seoFragment from './seo';
+import imageFragment from "./image";
+import { productExtrasFragment } from "./productExtrasFragment";
+import seoFragment from "./seo";
 
 const productFragment = /* GraphQL */ `
   fragment product on Product {
@@ -34,6 +34,9 @@ const productFragment = /* GraphQL */ `
           selectedOptions {
             name
             value
+          }
+          image {
+            ...image
           }
           price {
             amount
