@@ -1,7 +1,7 @@
 "use client";
 
-import { addToast } from "@heroui/react";
 import { Button as MovingBorderButton } from "@/components/ui/moving-border";
+import { addToast } from "@heroui/react";
 import clsx from "clsx";
 import type { SiteBanner } from "lib/shopify/types";
 import React from "react";
