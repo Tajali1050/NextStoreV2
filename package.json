@@ -13,6 +13,8 @@
     "@heroicons/react": "^2.2.0",
     "@heroui/react": "^2.8.0-beta.6",
     "@heroui/theme": "^2.4.16-beta.2",
+    "@vidstack/player": "0.13.3",
+    "@vidstack/react": "0.6.15",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.12.2",
