@@ -1,9 +1,8 @@
-import { Button } from "@heroui/react";
+import { Button, type ButtonProps } from "@heroui/react";
 import clsx from "clsx";
 import React from "react";
 
-export interface MovingBorderButtonProps
-  extends React.ComponentProps<typeof Button> {}
+export interface MovingBorderButtonProps extends ButtonProps {}
 
 export function MovingBorderButton({
   className,

@@ -81,7 +81,7 @@ export function AddToCart({ product }: { product: Product }) {
   return (
     <form
       action={async () => {
-        addCartItem(finalVariant, product);
+        addCartItem(finalVariant!, product);
         addItemAction();
       }}
     >
