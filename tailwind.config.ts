@@ -1,4 +1,4 @@
-const {heroui} = require("@heroui/react");
+const { heroui } = require("@heroui/react");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -8,7 +8,11 @@ module.exports = {
     "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        "spin-slow": "spin 4s linear infinite",
+      },
+    },
   },
   darkMode: "class",
   plugins: [heroui()],
