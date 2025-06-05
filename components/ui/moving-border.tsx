@@ -46,7 +46,7 @@ export function Button({
         <MovingBorder duration={duration} rx="30%" ry="30%">
           <div
             className={cn(
-              "h-20 w-20 bg-[radial-gradient(#0ea5e9_40%,transparent_60%)] opacity-[0.8]",
+              "h-20 w-20 bg-[radial-gradient(#17C964_40%,transparent_60%)] opacity-[1]",
               borderClassName,
             )}
           />
@@ -55,7 +55,7 @@ export function Button({
 
       <div
         className={cn(
-          "relative flex h-full w-full items-center justify-center border border-slate-800 bg-slate-900/[0.8] text-sm text-white antialiased backdrop-blur-xl",
+          "relative flex h-full w-full items-center justify-center border border-slate-800 bg-gradient-to-tr from-success-500 to-yellow-500 text-white shadow-lge antialiased backdrop-blur-xl",
           className,
         )}
         style={{
@@ -94,13 +94,12 @@ export const MovingBorder = ({
 
   const x = useTransform(
     progress,
-    [0, 1],
-    [(val: number) => pathRef.current?.getPointAtLength(val).x ?? 0],
+    (val: number) => pathRef.current?.getPointAtLength(val).x ?? 0
   );
+  
   const y = useTransform(
     progress,
-    [0, 1],
-    [(val: number) => pathRef.current?.getPointAtLength(val).y ?? 0],
+    (val: number) => pathRef.current?.getPointAtLength(val).y ?? 0
   );
 
   const transform = useMotionTemplate`translateX(${x}px) translateY(${y}px) translateX(-50%) translateY(-50%)`;
