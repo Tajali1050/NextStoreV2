@@ -1,4 +1,4 @@
-import { InternalRating } from '../../lib/shopify/types';
+import { InternalRating } from "../../lib/shopify/types";
 
 export function InternalRatingCard({ rating }: { rating: InternalRating }) {
   const { image, rating: score, title, description } = rating;

@@ -1,18 +1,17 @@
 export default {
   experimental: {
-    
-    useCache: true
+    useCache: true,
   },
   //  output: "export",
   images: {
-    formats: ['image/avif', 'image/webp'],
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'cdn.shopify.com',
-        pathname: '/s/files/**'
-      }
-    ]
+        protocol: "https",
+        hostname: "cdn.shopify.com",
+        pathname: "/s/files/**",
+      },
+    ],
   },
-  transpilePackages: ['@heroui/react', '@heroui/dom-animation'],
+  transpilePackages: ["@heroui/react", "@heroui/dom-animation"],
 };
