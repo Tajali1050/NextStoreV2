@@ -47,6 +47,12 @@ export type Image = {
   height: number;
 };
 
+export interface Reel {
+  id: string;
+  poster: string;
+  src: string;
+}
+
 export type Menu = {
   title: string;
   path: string;
@@ -76,6 +82,7 @@ export type Product = Omit<
   | "benefits"
   | "ratingAverage"
   | "internalRatings"
+  | "videos"
 > & {
   variants: ProductVariant[];
   images: Image[];
@@ -83,6 +90,7 @@ export type Product = Omit<
   benefits?: string[];
   ratingAverage?: number;
   internalRatings?: InternalRating[];
+  videos?: Reel[];
 };
 
 export type ProductOption = {
@@ -150,6 +158,7 @@ export type ShopifyProduct = {
   benefits?: { value: string } | null;
   ratingAverage?: { value: string } | null;
   internalRatings?: { value: string } | null;
+  videos?: { value: string } | null;
 };
 
 export type ShopifyCartOperation = {
@@ -293,6 +302,12 @@ export interface InternalRating {
   rating: number;
   title: string;
   description: string;
+}
+
+export interface Reel {
+  id: string;
+  poster: string;
+  src: string;
 }
 
 export interface Metafield {

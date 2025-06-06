@@ -3,25 +3,28 @@ import clsx from "clsx";
 import Link from "next/link";
 
 export interface SiteBannerBarClientProps {
-  ctaType?: 'copyCode' | 'link' | null;
+  ctaType?: "copyCode" | "link" | null;
   discountCode?: string;
   linkUrl?: string;
 }
 
-export function SiteBannerBarClient({ ctaType, discountCode, linkUrl }: SiteBannerBarClientProps) {
-
+export function SiteBannerBarClient({
+  ctaType,
+  discountCode,
+  linkUrl,
+}: SiteBannerBarClientProps) {
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(discountCode || '');
+      await navigator.clipboard.writeText(discountCode || "");
       addToast({
-        title: 'Copied!',
+        title: "Copied!",
         description: discountCode,
-        color: 'success',
+        color: "success",
       });
     } catch {
       addToast({
-        title: 'Copy failed',
-        color: 'danger',
+        title: "Copy failed",
+        color: "danger",
       });
     }
   };
@@ -29,16 +32,14 @@ export function SiteBannerBarClient({ ctaType, discountCode, linkUrl }: SiteBann
   return (
     <div
       className={clsx(
-        'flex-shrink-0 transform transition-transform duration-300 ease-in-out'
+        "flex-shrink-0 transform transition-transform duration-300 ease-in-out",
       )}
     >
-      {ctaType === 'copyCode' && discountCode && (
-        <Button onPress={handleCopy}>
-          {discountCode}
-        </Button>
+      {ctaType === "copyCode" && discountCode && (
+        <Button onPress={handleCopy}>{discountCode}</Button>
       )}
 
-      {ctaType === 'link' && linkUrl && (
+      {ctaType === "link" && linkUrl && (
         <Link href={linkUrl} className="underline font-medium">
           Learn more
         </Link>

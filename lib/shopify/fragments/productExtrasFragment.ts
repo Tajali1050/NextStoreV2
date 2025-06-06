@@ -1,4 +1,3 @@
-
 export const productExtrasFragment = `
   fragment productExtrasFragment on Product {
   subtitle: metafield(namespace: "custom", key: "subtitle") {
@@ -11,6 +10,9 @@ export const productExtrasFragment = `
     value
   }
   internalRatings: metafield(namespace: "custom", key: "internalRatings") {
+    value
+  }
+  videos: metafield(namespace: "PDP", key: "videos") {
     value
   }
 }
