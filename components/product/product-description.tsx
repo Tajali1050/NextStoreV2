@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useSelectedVariant } from "./product-context";
 import RatingStars from "./ratingStars";
 import { VariantSelector } from "./variant-selector";
+import ProductReels from "components/ProductReels";
 
 export function ProductDescription({ product }: { product: Product }) {
   const selectedVariant = useSelectedVariant(product.variants);
@@ -35,6 +36,8 @@ export function ProductDescription({ product }: { product: Product }) {
             html={product.descriptionHtml}
           />
         ) : null}
+
+        <ProductReels videos={product.videos ?? []} />
 
         {product.benefits && (
           <div className="mb-6">
