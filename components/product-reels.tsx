@@ -86,9 +86,9 @@ export default function ProductReels({ videos }: ProductReelsProps) {
                     controls
                     playsInline
                     muted
+                    autoPlay
                     className="aspect-[9/16] w-full rounded-lg bg-black"
                     src={current.src}
-                    poster={current.poster}
                   />
                 )}
               </div>
