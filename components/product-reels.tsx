@@ -3,10 +3,10 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 export interface Reel {
   id: string;
@@ -26,11 +26,11 @@ export default function ProductReels({ videos }: ProductReelsProps) {
   return (
     <>
       <Swiper
-        direction="vertical"
-        slidesPerView={2}
+        direction="horizontal"
+        slidesPerView={3}
         spaceBetween={12}
         modules={[Navigation]}
-        className="h-80 w-full max-w-60 overflow-hidden rounded-lg"
+        className="h-60 w-full max-w-100 overflow-hidden rounded-lg"
       >
         {videos.map((video) => (
           <SwiperSlide key={video.id} className="aspect-[9/16]">

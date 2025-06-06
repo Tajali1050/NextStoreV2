@@ -2,16 +2,18 @@
 
 import { AddToCart } from "components/cart/add-to-cart";
 import Price from "components/price";
+import ProductReels from "components/ProductReels";
 import Prose from "components/prose";
 import { Product } from "lib/shopify/types";
 import Image from "next/image";
 import { useSelectedVariant } from "./product-context";
 import RatingStars from "./ratingStars";
 import { VariantSelector } from "./variant-selector";
-import ProductReels from "components/ProductReels";
 
 export function ProductDescription({ product }: { product: Product }) {
   const selectedVariant = useSelectedVariant(product.variants);
+
+  console.log("Printing videos length : " + product.videos);
   return (
     <>
       <div className="space-y-6">
@@ -36,8 +38,6 @@ export function ProductDescription({ product }: { product: Product }) {
             html={product.descriptionHtml}
           />
         ) : null}
-
-        <ProductReels videos={product.videos ?? []} />
 
         {product.benefits && (
           <div className="mb-6">
@@ -78,6 +78,8 @@ export function ProductDescription({ product }: { product: Product }) {
           </div>
         </div>
         <AddToCart product={product} />
+
+        <ProductReels videos={product.videos ?? []} />
       </div>
     </>
   );
