@@ -12,5 +12,8 @@ export const productExtrasFragment = `
   internalRatings: metafield(namespace: "custom", key: "internalRatings") {
     value
   }
+  videos: metafield(namespace: "PDP", key: "videos") {
+    value
+  }
 }
 `;
