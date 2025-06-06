@@ -1,8 +1,7 @@
 "use client";
 
-import { Dialog, Transition } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { useEffect, useRef, useState } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
@@ -10,7 +9,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 export interface Reel {
   id: string;
-  poster: string;
   src: string;
 }
 
@@ -49,9 +47,10 @@ export default function ProductReels({ videos }: ProductReelsProps) {
               onClick={() => setCurrent(video)}
               className="block h-full w-full overflow-hidden rounded-lg bg-neutral-100 shadow"
             >
-              <img
-                src={video.poster}
-                alt="Video poster"
+              <video
+                src={video.src}
+                muted
+                playsInline
                 className="h-full w-full object-cover"
               />
             </button>
@@ -59,57 +58,29 @@ export default function ProductReels({ videos }: ProductReelsProps) {
         ))}
       </Swiper>
 
-      <Transition show={current !== null} as={Fragment}>
-        <Dialog onClose={() => setCurrent(null)} className="relative z-50">
-          <Transition.Child
-            as={Fragment}
-            enter="transition-opacity duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transition-opacity duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-black/70" aria-hidden="true" />
-          </Transition.Child>
-
-          <Transition.Child
-            as={Fragment}
-            enter="transition-transform duration-300"
-            enterFrom="opacity-0 scale-95"
-            enterTo="opacity-100 scale-100"
-            leave="transition-transform duration-200"
-            leaveFrom="opacity-100 scale-100"
-            leaveTo="opacity-0 scale-95"
-          >
-            <Dialog.Panel className="fixed inset-0 flex items-center justify-center p-4">
-              <div className="relative w-full max-w-sm">
-                <button
-                  aria-label="Close video"
-                  onClick={() => setCurrent(null)}
-                  className="absolute right-2 top-2 z-10 rounded bg-white p-1 text-black shadow"
-                >
-                  <XMarkIcon className="h-5 w-5" />
-                </button>
-                {current && (
-                  <video
-                    ref={videoRef}
-                    controls
-                    playsInline
-                    muted
-                    preload="auto"
-                    autoPlay
-                    crossOrigin="anonymous"
-                    className="aspect-[9/16] w-full rounded-lg bg-black"
-                  >
-                    <source src={current.src} type="video/mp4" />
-                  </video>
-                )}
-              </div>
-            </Dialog.Panel>
-          </Transition.Child>
-        </Dialog>
-      </Transition>
+      <Dialog
+        open={current !== null}
+        onOpenChange={(open) => {
+          if (!open) setCurrent(null);
+        }}
+      >
+        <DialogContent className="w-full max-w-sm p-0 overflow-hidden">
+          {current && (
+            <video
+              ref={videoRef}
+              controls
+              playsInline
+              muted
+              preload="auto"
+              autoPlay
+              crossOrigin="anonymous"
+              className="aspect-[9/16] w-full bg-black"
+            >
+              <source src={current.src} type="video/mp4" />
+            </video>
+          )}
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
