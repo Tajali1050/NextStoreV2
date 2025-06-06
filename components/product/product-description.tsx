@@ -5,9 +5,9 @@ import Price from "components/price";
 import Prose from "components/prose";
 import { Product } from "lib/shopify/types";
 import Image from "next/image";
+import { useSelectedVariant } from "./product-context";
 import RatingStars from "./ratingStars";
 import { VariantSelector } from "./variant-selector";
-import { useSelectedVariant } from "./product-context";
 
 export function ProductDescription({ product }: { product: Product }) {
   const selectedVariant = useSelectedVariant(product.variants);
@@ -29,10 +29,6 @@ export function ProductDescription({ product }: { product: Product }) {
             <p className="text-large text-black">{product.subtitle}</p>
           )}
         </div>
-        <VariantSelector
-          options={product.options}
-          variants={product.variants}
-        />
         {product.descriptionHtml ? (
           <Prose
             className="mb-6 text-sm leading-tight"
@@ -59,6 +55,10 @@ export function ProductDescription({ product }: { product: Product }) {
             </ul>
           </div>
         )}
+        <VariantSelector
+          options={product.options}
+          variants={product.variants}
+        />
         <div className="text-2xl font-semibold text-black flex items-center gap-2">
           <Price
             amount={
