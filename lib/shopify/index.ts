@@ -39,6 +39,7 @@ import {
   GetSiteBannerResponse,
   Image,
   InternalRating,
+  Reel,
   Menu,
   Page,
   Product,
@@ -199,6 +200,7 @@ export const reshapeProduct = (
     benefits,
     ratingAverage,
     internalRatings,
+    videos,
     ...rest
   } = product;
 
@@ -212,6 +214,7 @@ export const reshapeProduct = (
   const internalRatingsArr = internalRatings?.value
     ? (JSON.parse(internalRatings.value) as InternalRating[])
     : [];
+  const videosArr = videos?.value ? (JSON.parse(videos.value) as Reel[]) : [];
 
   return {
     ...rest,
@@ -221,6 +224,7 @@ export const reshapeProduct = (
     benefits: benefitsArr,
     ratingAverage: ratingAverageNum,
     internalRatings: internalRatingsArr,
+    videos: videosArr,
   };
 };
 
