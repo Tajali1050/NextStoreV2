@@ -304,6 +304,12 @@ export interface InternalRating {
   description: string;
 }
 
+export interface Reel {
+  id: string;
+  poster: string;
+  src: string;
+}
+
 export interface Metafield {
   value: string;
 }
