@@ -2,7 +2,7 @@
 
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
@@ -20,6 +20,16 @@ export interface ProductReelsProps {
 
 export default function ProductReels({ videos }: ProductReelsProps) {
   const [current, setCurrent] = useState<Reel | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const vid = videoRef.current;
+    if (vid && current) {
+      vid.play().catch(() => {
+        /* ignore autoplay errors */
+      });
+    }
+  }, [current]);
 
   if (!videos?.length) return null;
 
@@ -83,13 +93,17 @@ export default function ProductReels({ videos }: ProductReelsProps) {
                 </button>
                 {current && (
                   <video
+                    ref={videoRef}
                     controls
                     playsInline
                     muted
+                    preload="auto"
+                    autoPlay
+                    crossOrigin="anonymous"
                     className="aspect-[9/16] w-full rounded-lg bg-black"
-                    src={current.src}
-                    poster={current.poster}
-                  />
+                  >
+                    <source src={current.src} type="video/mp4" />
+                  </video>
                 )}
               </div>
             </Dialog.Panel>
