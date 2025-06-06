@@ -49,7 +49,6 @@ export type Image = {
 
 export interface Reel {
   id: string;
-  poster: string;
   src: string;
 }
 
@@ -306,7 +305,6 @@ export interface InternalRating {
 
 export interface Reel {
   id: string;
-  poster: string;
   src: string;
 }
 
