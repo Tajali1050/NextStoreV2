@@ -1,7 +1,5 @@
-import dynamic from "next/dynamic";
-
 export type { Reel, ProductReelsProps } from "./product-reels";
 
-const ProductReels = dynamic(() => import("./product-reels"), { ssr: false });
+import ProductReels from "./product-reels";
 
 export default ProductReels;
