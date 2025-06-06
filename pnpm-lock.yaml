@@ -20,6 +20,12 @@ importers:
       '@heroui/theme':
         specifier: ^2.4.16-beta.2
         version: 2.4.16-beta.2(tailwindcss@4.0.14)
+      '@vidstack/player-react':
+        specifier: ^1.6.0
+        version: 1.6.0(@vidstack/player@1.6.0(lit@3.3.0))(lit@3.3.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@vidstack/react':
+        specifier: ^0.6.15
+        version: 0.6.15(@types/react@19.0.12)(maverick.js@0.37.0)(react@19.0.0)(vidstack@0.6.15)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -818,6 +824,25 @@ packages:
   '@internationalized/string@3.2.6':
     resolution: {integrity: sha512-LR2lnM4urJta5/wYJVV7m8qk5DrMZmLRTuFhbQO5b9/sKLHgty6unQy1Li4+Su2DWydmB4aZdS5uxBRXIq2aAw==}
 
+  '@lit-labs/ssr-client@1.1.7':
+    resolution: {integrity: sha512-VvqhY/iif3FHrlhkzEPsuX/7h/NqnfxLwVf0p8ghNIlKegRyRqgeaJevZ57s/u/LiFyKgqksRP5n+LmNvpxN+A==}
+
+  '@lit-labs/ssr-dom-shim@1.3.0':
+    resolution: {integrity: sha512-nQIWonJ6eFAvUUrSlwyHDm/aE8PBDu5kRpL0vHMg6K8fK3Diq1xdPjTnsJSwxABhaZ+5eBi1btQB5ShUTKo4nQ==}
+
+  '@lit-labs/ssr@2.3.0':
+    resolution: {integrity: sha512-uPaJoNf5w3t8DOVDpuI4WR6wo552mZwiiE9n9TpIvinh75lDgvl1ki07wvfrFI6VEbDVPRj4jHiCduBr1dVJ7A==}
+    engines: {node: '>=13.9.0'}
+
+  '@lit/reactive-element@1.6.3':
+    resolution: {integrity: sha512-QuTgnG52Poic7uM1AN5yJ09QMe0O28e10XzSvWDz02TJiiKee4stsiownEIadWm8nYzyDAyT+gKzUoZmiWQtsQ==}
+
+  '@lit/reactive-element@2.1.0':
+    resolution: {integrity: sha512-L2qyoZSQClcBmq0qajBVbhYEcG6iK0XfLn66ifLe/RfC0/ihpc+pl0Wdn8bJ8o+hj38cG0fGXRgSS20MuXn7qA==}
+
+  '@maverick-js/signals@5.11.5':
+    resolution: {integrity: sha512-/GO94awrwN9ROYZDMTeByordjvbhcm3CMvB/2aL/sEUy9Va8nM/2GmNgOOe+rrooTGnz8/DzO73xomuBRrnYWw==}
+
   '@next/env@15.3.0-canary.13':
     resolution: {integrity: sha512-JSc7jRSVdstjZ0bfxKMFeYM+gVRgUbPpGSWq9JLDQDH/mYHMN+LMNR8CafQCKjoSL7tzkBpH9Ug6r9WaIescCw==}
 
@@ -868,6 +893,9 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
+
+  '@parse5/tools@0.1.0':
+    resolution: {integrity: sha512-VB9+4BsFoS+4HdB/Ph9jD4FHQt7GyiWESVNfBSh8Eu54LujWyy+NySGLjg8GZFWSZcESG72F67LjgmKZDZCvPg==}
 
   '@react-aria/breadcrumbs@3.5.24':
     resolution: {integrity: sha512-CRheGyyM8afPJvDHLXn/mmGG/WAr/z2LReK3DlPdxVKcsOn7g3NIRxAcAIAJQlDLdOiu1SXHiZe6uu2jPhHrxA==}
@@ -1473,11 +1501,17 @@ packages:
   '@tanstack/virtual-core@3.13.4':
     resolution: {integrity: sha512-fNGO9fjjSLns87tlcto106enQQLycCKR4DPNpgq3djP5IdcPFdPAmaKjsgzIeRhH7hWrELgW12hYnRthS5kLUw==}
 
+  '@types/fscreen@1.0.4':
+    resolution: {integrity: sha512-TsjxyAUvlvuQyao9vNk0yES4nY07K9xoAbkhgXU948JG39EqlLxniWuW9OiZde9Q8ACSpu3fmbXXRAfb/l/HqQ==}
+
   '@types/lodash.debounce@4.0.9':
     resolution: {integrity: sha512-Ma5JcgTREwpLRwMM+XwBR7DaWe96nC38uCBDFKZWbNKD+osjVzdpnUSwBcqCptrp16sSOLBAUb50Car5I0TCsQ==}
 
   '@types/lodash@4.17.17':
     resolution: {integrity: sha512-RRVJ+J3J+WmyOTqnz3PiBLA501eKwXl2noseKOrNo/6+XEHjTAxO4xHvxQB6QuNm+s4WRbn6rSiap8+EA+ykFQ==}
+
+  '@types/node@16.18.126':
+    resolution: {integrity: sha512-OTcgaiwfGFBKacvfwuHzzn1KLxH/er8mluiy8/uM3sGXHaRe73RrSIj01jow9t4kJEW633Ov+cOexXeiApTyAw==}
 
   '@types/node@22.13.10':
     resolution: {integrity: sha512-I6LPUvlRH+O6VRUqYOcMudhaIdUVWfsjnZavnsraHvpBwaEyMN29ry+0UVJhImYL16xsscu0aske3yA+uPOWfw==}
@@ -1489,6 +1523,43 @@ packages:
 
   '@types/react@19.0.12':
     resolution: {integrity: sha512-V6Ar115dBDrjbtXSrS+/Oruobc+qVbbUxDFC1RSbRqLt5SYvxxyIDrSC85RWml54g+jfNeEMZhEj7wW07ONQhA==}
+
+  '@types/trusted-types@2.0.7':
+    resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
+
+  '@vidstack/foundation@1.6.0':
+    resolution: {integrity: sha512-xT7ikNhqrzPCuSxqhCYG6l20TNC6rz/VPvBBZjL5DrbdEK9ag+Ojh/ZLhYfp5zv94fjkhrw2n4+vqeNm1KyRPg==}
+    deprecated: 'This package has moved to vidstack: https://github.com/vidstack/player/discussions/716'
+    peerDependencies:
+      lit: ^2.1.1
+
+  '@vidstack/player-react@1.6.0':
+    resolution: {integrity: sha512-Yak6ty/VOJUMlsxmcS7ttZOgrxjy7BUT/WiUfQJoGvvKNIZNNhqnYmX6wTD5msdCB4oo8Aw6YuC/aDC72Tpe8w==}
+    engines: {node: '>=16'}
+    deprecated: 'This package has moved to @vidstack/react: https://github.com/vidstack/player/discussions/716'
+    peerDependencies:
+      '@vidstack/player': 1.6.0
+      react: ^18.0.0
+      react-dom: ^18.0.0
+
+  '@vidstack/player@1.6.0':
+    resolution: {integrity: sha512-KzbxgnYXcsFmi39vtDFL3+DQYJofdn6oQANLUcQqhp4AEqxxpl+46dN/3/361uaNQHwYiXV5mCszjhZzz/sKEg==}
+    engines: {node: '>=16'}
+    deprecated: 'This package has moved to vidstack: https://github.com/vidstack/player/discussions/716'
+    peerDependencies:
+      lit: ^2.1.1
+
+  '@vidstack/react@0.6.15':
+    resolution: {integrity: sha512-S8KkYCte84Pqwb8Zd9vuOCe2YuaXqRdtYQ22zSvDUPlS7m8ilYs6ypfHwZzmgSVZdayVU1C703aFMSdcLfpxpg==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      '@types/react': ^18.0.0
+      maverick.js: 0.37.0
+      react: ^18.0.0
+      vidstack: 0.6.15
+
+  '@webcomponents/template-shadowroot@0.1.0':
+    resolution: {integrity: sha512-ry84Vft6xtRBbd4M/ptRodbOLodV5AD15TYhyRghCRgIcJJKmYmJ2v2BaaWxygENwh6Uq3zTfGPmlckKT/GXsQ==}
 
   busboy@1.6.0:
     resolution: {integrity: sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==}
@@ -1539,6 +1610,10 @@ packages:
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
 
+  data-uri-to-buffer@4.0.1:
+    resolution: {integrity: sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A==}
+    engines: {node: '>= 12'}
+
   decimal.js@10.5.0:
     resolution: {integrity: sha512-8vDa8Qxvr/+d94hSh5P3IJwI5t8/c0KsMp+g8bNw9cY2icONa5aPfvKeieW1WlG0WQYwwhJ7mjui2xtiePQSXw==}
 
@@ -1554,9 +1629,21 @@ packages:
     resolution: {integrity: sha512-ZSW3ma5GkcQBIpwZTSRAI8N71Uuwgs93IezB7mf7R60tC8ZbJideoDNKjHn2O9KIlx6rkGTTEk1xUCK2E1Y2Yg==}
     engines: {node: '>=10.13.0'}
 
+  entities@6.0.0:
+    resolution: {integrity: sha512-aKstq2TDOndCn4diEyp9Uq/Flu2i1GlLkc6XIDQSDMuaFE3OPW5OphLCyQ5SpSJZTb4reN+kTcYru5yIfXoRPw==}
+    engines: {node: '>=0.12'}
+
+  fetch-blob@3.2.0:
+    resolution: {integrity: sha512-7yAQpD2UMJzLi1Dqv7qFYnPbaPx7ZfFK6PiIxQ4PfkGPyNyl2Ugx+a/umUonmKqjhM4DnfbMvdX6otXq83soQQ==}
+    engines: {node: ^12.20 || >= 14.13}
+
   flat@5.0.2:
     resolution: {integrity: sha512-b6suED+5/3rTpUBdG1gupIl8MPFCAMA0QXwmljLhvCUKcUvdE4gWky9zpuGCcXHOsz4J9wPGNWq6OKpmIzz3hQ==}
     hasBin: true
+
+  formdata-polyfill@4.0.10:
+    resolution: {integrity: sha512-buewHzMvYL29jdeQTVILecSaZKnt/RJWjoZCF5OW60Z67/GmSLBkOFM7qh1PI3zFNtJbaZL5eQu1vLfazOwj4g==}
+    engines: {node: '>=12.20.0'}
 
   framer-motion@12.12.2:
     resolution: {integrity: sha512-qCszZCiGWkilL40E3VuhIJJC/CS3SIBl2IHyGK8FU30nOUhTmhBNWPrNFyozAWH/bXxwzi19vJHIGVdALF0LCg==}
@@ -1609,6 +1696,12 @@ packages:
   jiti@2.4.2:
     resolution: {integrity: sha512-rg9zJN+G4n2nfJl5MW3BMygZX56zKPNVEYYqq7adpmMh4Jn2QNEwhvQlFy6jPVdcod7txZtKHWnyZiA3a0zP7A==}
     hasBin: true
+
+  just-debounce-it@3.2.0:
+    resolution: {integrity: sha512-WXzwLL0745uNuedrCsCs3rpmfD6DBaf7uuVwaq98/8dafURfgQaBsSpjiPp5+CW6Vjltwy9cOGI6qE71b3T8iQ==}
+
+  just-throttle@4.2.0:
+    resolution: {integrity: sha512-/iAZv1953JcExpvsywaPKjSzfTiCLqeguUTE6+VmK15mOcwxBx7/FHrVvS4WEErMR03TRazH8kcBSHqMagYIYg==}
 
   keen-slider@6.8.6:
     resolution: {integrity: sha512-dcEQ7GDBpCjUQA8XZeWh3oBBLLmyn8aoeIQFGL/NTVkoEOsmlnXqA4QykUm/SncolAZYGsEk/PfUhLZ7mwMM2w==}
@@ -1677,6 +1770,24 @@ packages:
     resolution: {integrity: sha512-6b6gd/RUXKaw5keVdSEtqFVdzWnU5jMxTUjA2bVcMNPLwSQ08Sv/UodBVtETLCn7k4S1Ibxwh7k68IwLZPgKaA==}
     engines: {node: '>= 12.0.0'}
 
+  lit-element@3.3.3:
+    resolution: {integrity: sha512-XbeRxmTHubXENkV4h8RIPyr8lXc+Ff28rkcQzw3G6up2xg5E8Zu1IgOWIwBLEQsu3cOVFqdYwiVi0hv0SlpqUA==}
+
+  lit-element@4.2.0:
+    resolution: {integrity: sha512-MGrXJVAI5x+Bfth/pU9Kst1iWID6GHDLEzFEnyULB/sFiRLgkd8NPK/PeeXxktA3T6EIIaq8U3KcbTU5XFcP2Q==}
+
+  lit-html@2.8.0:
+    resolution: {integrity: sha512-o9t+MQM3P4y7M7yNzqAyjp7z+mQGa4NS4CxiyLqFPyFWyc4O+nodLrkrxSaCTrla6M5YOLaT3RpbbqjszB5g3Q==}
+
+  lit-html@3.3.0:
+    resolution: {integrity: sha512-RHoswrFAxY2d8Cf2mm4OZ1DgzCoBKUKSPvA1fhtSELxUERq2aQQ2h05pO9j81gS1o7RIRJ+CePLogfyahwmynw==}
+
+  lit@2.8.0:
+    resolution: {integrity: sha512-4Sc3OFX9QHOJaHbmTMk28SYgVxLN3ePDjg7hofEft2zWlehFL3LiAuapWc4U/kYwMYJSh2hTCPZ6/LIC7ii0MA==}
+
+  lit@3.3.0:
+    resolution: {integrity: sha512-DGVsqsOIHBww2DqnuZzW7QsuCdahp50ojuDaBPC7jUDRpYoH0z7kHBBYZewRzer75FwtrkmkKk7iOAwSaWdBmw==}
+
   lodash.castarray@4.4.0:
     resolution: {integrity: sha512-aVx8ztPv7/2ULbArGJ2Y42bG1mEQ5mGjpdvrbJcJFU3TbYybe+QlLS4pst9zV52ymy2in1KpFPiZnAOATxD4+Q==}
 
@@ -1690,6 +1801,14 @@ packages:
     resolution: {integrity: sha512-VK5a2ydJ7xm8GvBeKLS9mu1pVK6ucef9780JVUjw6bAjJL/QXnd4Y0p7SPeOUMC27YhzNCZvm5d/QX0Tp3rc0w==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
+  maverick.js@0.37.0:
+    resolution: {integrity: sha512-1Dk/9rienLiihlktVvH04ADC2UJTMflC1fOMVQCCaQAaz7hgzDI5i0p/arFbDM52hFFiIcq4RdXtYz47SgsLgw==}
+    engines: {node: '>=16'}
+
+  media-captions@0.0.18:
+    resolution: {integrity: sha512-JW18P6FuHdyLSGwC4TQ0kF3WdNj/+wMw2cKOb8BnmY6vSJGtnwJ+vkYj+IjHOV34j3XMc70HDeB/QYKR7E7fuQ==}
+    engines: {node: '>=16'}
 
   motion-dom@12.12.1:
     resolution: {integrity: sha512-GXq/uUbZBEiFFE+K1Z/sxdPdadMdfJ/jmBALDfIuHGi0NmtealLOfH9FqT+6aNPgVx8ilq0DtYmyQlo6Uj9LKQ==}
@@ -1739,6 +1858,18 @@ packages:
         optional: true
       sass:
         optional: true
+
+  node-domexception@1.0.0:
+    resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
+    engines: {node: '>=10.5.0'}
+    deprecated: Use your platform's native DOMException instead
+
+  node-fetch@3.3.2:
+    resolution: {integrity: sha512-dRB78srN/l6gqWulah9SrxeYnxeddIG30+GOqK/9OlLVyLg3HPnr6SqOWTWOXKRwC2eGYCkZ59NNuSgvSrpgOA==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+
+  parse5@7.3.0:
+    resolution: {integrity: sha512-IInvU7fabl34qmi9gY8XOVxhYyMyuH2xUNpb2q8/Y+7552KlejkRvqvD19nMoUW/uQGGbqNpA6Tufu5FL5BZgw==}
 
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
@@ -1907,6 +2038,10 @@ packages:
   tw-animate-css@1.3.4:
     resolution: {integrity: sha512-dd1Ht6/YQHcNbq0znIT6dG8uhO7Ce+VIIhZUhjsryXsMPJQz3bZg7Q2eNzLwipb25bRZslGb2myio5mScd1TFg==}
 
+  type-fest@3.13.1:
+    resolution: {integrity: sha512-tLq3bSNx+xSpwvAJnzrK0Ep5CLNWjvFTOp71URMaAEWBfRb9nnJiBoUe0tF8bI4ZFO3omgBR6NvnbzVUT3Ly4g==}
+    engines: {node: '>=14.16'}
+
   typescript@5.8.2:
     resolution: {integrity: sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ==}
     engines: {node: '>=14.17'}
@@ -1949,6 +2084,14 @@ packages:
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
+
+  vidstack@0.6.15:
+    resolution: {integrity: sha512-pI2aixBuOpu/LSnRgNJ40tU/KFW+x1X+O2bW1hz946ZZShDM5oqRXF9pavDOuckHAHPgUN9HYUr9vUNTBUPF1Q==}
+    engines: {node: '>=16'}
+
+  web-streams-polyfill@3.3.3:
+    resolution: {integrity: sha512-d2JWLCivmZYTSIoge9MsgFCZrt571BikcWGYkjC1khllbTeDlGqZ2D8vD8E/lJa8WGWbb7Plm8/XJYV7IJHZZw==}
+    engines: {node: '>= 8'}
 
 snapshots:
 
@@ -3213,6 +3356,37 @@ snapshots:
     dependencies:
       '@swc/helpers': 0.5.15
 
+  '@lit-labs/ssr-client@1.1.7':
+    dependencies:
+      '@lit/reactive-element': 2.1.0
+      lit: 3.3.0
+      lit-html: 3.3.0
+
+  '@lit-labs/ssr-dom-shim@1.3.0': {}
+
+  '@lit-labs/ssr@2.3.0':
+    dependencies:
+      '@lit-labs/ssr-client': 1.1.7
+      '@lit/reactive-element': 1.6.3
+      '@parse5/tools': 0.1.0
+      '@types/node': 16.18.126
+      enhanced-resolve: 5.18.1
+      lit: 2.8.0
+      lit-element: 3.3.3
+      lit-html: 2.8.0
+      node-fetch: 3.3.2
+      parse5: 7.3.0
+
+  '@lit/reactive-element@1.6.3':
+    dependencies:
+      '@lit-labs/ssr-dom-shim': 1.3.0
+
+  '@lit/reactive-element@2.1.0':
+    dependencies:
+      '@lit-labs/ssr-dom-shim': 1.3.0
+
+  '@maverick-js/signals@5.11.5': {}
+
   '@next/env@15.3.0-canary.13': {}
 
   '@next/swc-darwin-arm64@15.3.0-canary.13':
@@ -3238,6 +3412,10 @@ snapshots:
 
   '@next/swc-win32-x64-msvc@15.3.0-canary.13':
     optional: true
+
+  '@parse5/tools@0.1.0':
+    dependencies:
+      parse5: 7.3.0
 
   '@react-aria/breadcrumbs@3.5.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
@@ -4172,11 +4350,15 @@ snapshots:
 
   '@tanstack/virtual-core@3.13.4': {}
 
+  '@types/fscreen@1.0.4': {}
+
   '@types/lodash.debounce@4.0.9':
     dependencies:
       '@types/lodash': 4.17.17
 
   '@types/lodash@4.17.17': {}
+
+  '@types/node@16.18.126': {}
 
   '@types/node@22.13.10':
     dependencies:
@@ -4189,6 +4371,40 @@ snapshots:
   '@types/react@19.0.12':
     dependencies:
       csstype: 3.1.3
+
+  '@types/trusted-types@2.0.7': {}
+
+  '@vidstack/foundation@1.6.0(lit@3.3.0)':
+    dependencies:
+      '@types/fscreen': 1.0.4
+      just-debounce-it: 3.2.0
+      just-throttle: 4.2.0
+      lit: 3.3.0
+
+  '@vidstack/player-react@1.6.0(@vidstack/player@1.6.0(lit@3.3.0))(lit@3.3.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+    dependencies:
+      '@lit-labs/ssr': 2.3.0
+      '@vidstack/foundation': 1.6.0(lit@3.3.0)
+      '@vidstack/player': 1.6.0(lit@3.3.0)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+    transitivePeerDependencies:
+      - lit
+
+  '@vidstack/player@1.6.0(lit@3.3.0)':
+    dependencies:
+      '@vidstack/foundation': 1.6.0(lit@3.3.0)
+      '@webcomponents/template-shadowroot': 0.1.0
+      lit: 3.3.0
+
+  '@vidstack/react@0.6.15(@types/react@19.0.12)(maverick.js@0.37.0)(react@19.0.0)(vidstack@0.6.15)':
+    dependencies:
+      '@types/react': 19.0.12
+      maverick.js: 0.37.0
+      react: 19.0.0
+      vidstack: 0.6.15
+
+  '@webcomponents/template-shadowroot@0.1.0': {}
 
   busboy@1.6.0:
     dependencies:
@@ -4230,6 +4446,8 @@ snapshots:
 
   csstype@3.1.3: {}
 
+  data-uri-to-buffer@4.0.1: {}
+
   decimal.js@10.5.0: {}
 
   deepmerge@4.3.1: {}
@@ -4241,7 +4459,18 @@ snapshots:
       graceful-fs: 4.2.11
       tapable: 2.2.1
 
+  entities@6.0.0: {}
+
+  fetch-blob@3.2.0:
+    dependencies:
+      node-domexception: 1.0.0
+      web-streams-polyfill: 3.3.3
+
   flat@5.0.2: {}
+
+  formdata-polyfill@4.0.10:
+    dependencies:
+      fetch-blob: 3.2.0
 
   framer-motion@12.12.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
@@ -4282,6 +4511,10 @@ snapshots:
   is-arrayish@0.3.2: {}
 
   jiti@2.4.2: {}
+
+  just-debounce-it@3.2.0: {}
+
+  just-throttle@4.2.0: {}
 
   keen-slider@6.8.6: {}
 
@@ -4330,6 +4563,38 @@ snapshots:
       lightningcss-win32-arm64-msvc: 1.29.2
       lightningcss-win32-x64-msvc: 1.29.2
 
+  lit-element@3.3.3:
+    dependencies:
+      '@lit-labs/ssr-dom-shim': 1.3.0
+      '@lit/reactive-element': 1.6.3
+      lit-html: 2.8.0
+
+  lit-element@4.2.0:
+    dependencies:
+      '@lit-labs/ssr-dom-shim': 1.3.0
+      '@lit/reactive-element': 2.1.0
+      lit-html: 3.3.0
+
+  lit-html@2.8.0:
+    dependencies:
+      '@types/trusted-types': 2.0.7
+
+  lit-html@3.3.0:
+    dependencies:
+      '@types/trusted-types': 2.0.7
+
+  lit@2.8.0:
+    dependencies:
+      '@lit/reactive-element': 1.6.3
+      lit-element: 3.3.3
+      lit-html: 2.8.0
+
+  lit@3.3.0:
+    dependencies:
+      '@lit/reactive-element': 2.1.0
+      lit-element: 4.2.0
+      lit-html: 3.3.0
+
   lodash.castarray@4.4.0: {}
 
   lodash.isplainobject@4.0.6: {}
@@ -4339,6 +4604,13 @@ snapshots:
   lucide-react@0.511.0(react@19.0.0):
     dependencies:
       react: 19.0.0
+
+  maverick.js@0.37.0:
+    dependencies:
+      '@maverick-js/signals': 5.11.5
+      type-fest: 3.13.1
+
+  media-captions@0.0.18: {}
 
   motion-dom@12.12.1:
     dependencies:
@@ -4384,6 +4656,18 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
+
+  node-domexception@1.0.0: {}
+
+  node-fetch@3.3.2:
+    dependencies:
+      data-uri-to-buffer: 4.0.1
+      fetch-blob: 3.2.0
+      formdata-polyfill: 4.0.10
+
+  parse5@7.3.0:
+    dependencies:
+      entities: 6.0.0
 
   picocolors@1.1.1: {}
 
@@ -4501,6 +4785,8 @@ snapshots:
 
   tw-animate-css@1.3.4: {}
 
+  type-fest@3.13.1: {}
+
   typescript@5.8.2: {}
 
   undici-types@6.20.0: {}
@@ -4529,3 +4815,11 @@ snapshots:
       react: 19.0.0
 
   util-deprecate@1.0.2: {}
+
+  vidstack@0.6.15:
+    dependencies:
+      maverick.js: 0.37.0
+      media-captions: 0.0.18
+      type-fest: 3.13.1
+
+  web-streams-polyfill@3.3.3: {}
