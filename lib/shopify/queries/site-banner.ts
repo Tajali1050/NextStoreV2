@@ -1,5 +1,4 @@
-
-export const getSiteBannerQuery =`
+export const getSiteBannerQuery = `
   query SiteBanner {
   metaobjects(type: "site", first: 1) {
     nodes {
@@ -11,4 +10,4 @@ export const getSiteBannerQuery =`
   }
 }
 
-`
+`;

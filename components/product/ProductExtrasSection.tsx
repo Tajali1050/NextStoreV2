@@ -1,6 +1,5 @@
-
-import { InternalRating } from '../../lib/shopify/types';
-import { InternalRatingCard } from './InternalRatingCard';
+import { InternalRating } from "../../lib/shopify/types";
+import { InternalRatingCard } from "./InternalRatingCard";
 
 export function ProductExtrasSection({
   internalRatings = [],

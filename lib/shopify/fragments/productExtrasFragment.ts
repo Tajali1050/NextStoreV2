@@ -1,4 +1,3 @@
-
 export const productExtrasFragment = `
   fragment productExtrasFragment on Product {
   subtitle: metafield(namespace: "custom", key: "subtitle") {

@@ -2,7 +2,6 @@
 
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { MediaPlayer, MediaProvider } from "@vidstack/react";
 import { Fragment, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -83,16 +82,14 @@ export default function ProductReels({ videos }: ProductReelsProps) {
                   <XMarkIcon className="h-5 w-5" />
                 </button>
                 {current && (
-                  <MediaPlayer
+                  <video
                     controls
                     playsInline
                     muted
                     className="aspect-[9/16] w-full rounded-lg bg-black"
                     src={current.src}
                     poster={current.poster}
-                  >
-                    <MediaProvider />
-                  </MediaPlayer>
+                  />
                 )}
               </div>
             </Dialog.Panel>

@@ -1,26 +1,30 @@
-'use client';
+"use client";
 
-import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
-import { GridTileImage } from 'components/grid/tile';
-import { useProduct, useUpdateURL } from 'components/product/product-context';
-import Image from 'next/image';
-import { startTransition, useState } from 'react';
-import type { Swiper as SwiperType } from 'swiper';
-import { FreeMode, Navigation, Pagination, Thumbs } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
+import { GridTileImage } from "components/grid/tile";
+import { useProduct, useUpdateURL } from "components/product/product-context";
+import Image from "next/image";
+import { startTransition, useState } from "react";
+import type { Swiper as SwiperType } from "swiper";
+import { FreeMode, Navigation, Pagination, Thumbs } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/thumbs';
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/thumbs";
 
-export function Gallery({ images }: { images: { src: string; altText: string }[] }) {
+export function Gallery({
+  images,
+}: {
+  images: { src: string; altText: string }[];
+}) {
   const { state, updateImage } = useProduct();
   const updateURL = useUpdateURL();
   const imageIndex = state.image ? parseInt(state.image) : 0;
-  
+
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   const [mainSwiper, setMainSwiper] = useState<SwiperType | null>(null);
 
@@ -47,10 +51,13 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
           onSwiper={setMainSwiper}
           spaceBetween={0}
           navigation={{
-            prevEl: '.swiper-button-prev-custom',
-            nextEl: '.swiper-button-next-custom',
+            prevEl: ".swiper-button-prev-custom",
+            nextEl: ".swiper-button-next-custom",
           }}
-          thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
+          thumbs={{
+            swiper:
+              thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
+          }}
           modules={[FreeMode, Navigation, Thumbs, Pagination]}
           className="main-swiper h-full w-full"
           onSlideChange={handleMainSlideChange}
@@ -153,31 +160,31 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
         .main-swiper .swiper-pagination {
           bottom: 16px;
         }
-        
+
         .main-swiper .swiper-pagination-bullet {
           background: rgba(255, 255, 255, 0.8);
           opacity: 0.7;
         }
-        
+
         .main-swiper .swiper-pagination-bullet-active {
           background: white;
           opacity: 1;
         }
-        
+
         .thumbnail-swiper .swiper-slide {
           width: 96px !important;
           height: 96px !important;
         }
-        
+
         .thumbnail-swiper .swiper-slide-thumb-active {
           opacity: 1;
         }
-        
+
         .thumbnail-swiper .swiper-slide:not(.swiper-slide-thumb-active) {
           opacity: 0.7;
           transition: opacity 0.3s ease;
         }
-        
+
         .thumbnail-swiper .swiper-slide:hover {
           opacity: 1;
         }
