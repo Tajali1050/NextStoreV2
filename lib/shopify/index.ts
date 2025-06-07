@@ -32,6 +32,7 @@ import {
   getProductsQuery,
 } from "./queries/product";
 import { getSiteBannerQuery } from "./queries/site-banner";
+import { getVideosQuery } from "./queries/video";
 import {
   Cart,
   Collection,
@@ -39,10 +40,10 @@ import {
   GetSiteBannerResponse,
   Image,
   InternalRating,
-  Reel,
   Menu,
   Page,
   Product,
+  Reel,
   ShopifyAddToCartOperation,
   ShopifyCart,
   ShopifyCartOperation,
@@ -60,6 +61,7 @@ import {
   ShopifyProductsOperation,
   ShopifyRemoveFromCartOperation,
   ShopifyUpdateCartOperation,
+  ShopifyVideosOperation,
   SiteBanner,
 } from "./types";
 
@@ -214,7 +216,9 @@ export const reshapeProduct = (
   const internalRatingsArr = internalRatings?.value
     ? (JSON.parse(internalRatings.value) as InternalRating[])
     : [];
-  const videosArr = videos?.value ? (JSON.parse(videos.value) as Reel[]) : [];
+  const videosArr = videos?.value
+    ? (JSON.parse(videos.value) as string[]).map((id) => ({ id, src: "", sources: undefined }))
+    : [];
 
   return {
     ...rest,
@@ -227,7 +231,6 @@ export const reshapeProduct = (
     videos: videosArr,
   };
 };
-
 const reshapeProducts = (products: ShopifyProduct[]) => {
   const reshapedProducts = [];
 
@@ -244,6 +247,32 @@ const reshapeProducts = (products: ShopifyProduct[]) => {
   return reshapedProducts;
 };
 
+export async function getVideos(ids: string[]): Promise<Reel[]> {
+  if (!ids.length) return [];
+
+  const res = await shopifyFetch<ShopifyVideosOperation>({
+    query: getVideosQuery,
+    variables: { ids },
+  });
+
+  const nodes = res.body.data.nodes || [];
+  const videos: Reel[] = [];
+
+  for (const node of nodes) {
+    if (node && node.sources?.length && node.sources[0]?.url) {
+      const mp4 = node.sources.find(
+        (s) => s?.format === "mp4" && s?.url?.includes("1080p"),
+      );
+      const src = mp4?.url ?? node.sources[0].url;
+      videos.push({
+        id: node.id, src,
+        sources: undefined
+      });
+    }
+  }
+
+  return videos;
+}
 export async function createCart(): Promise<Cart> {
   const res = await shopifyFetch<ShopifyCreateCartOperation>({
     query: createCartMutation,
@@ -446,9 +475,15 @@ export async function getProduct(handle: string): Promise<Product | undefined> {
     },
   });
 
-  return reshapeProduct(res.body.data.product, false);
+  const product = reshapeProduct(res.body.data.product, false);
+  if (product && product.videos?.length) {
+    const ids = product.videos.map((v) => v.id);
+    const sources = await getVideos(ids);
+    const map = new Map(sources.map((v) => [v.id, v.src]));
+    product.videos = ids.map((id) => ({ id, src: map.get(id) || "", sources: [] }));
+  }
+  return product;
 }
-
 export async function getProductRecommendations(
   productId: string,
 ): Promise<Product[]> {
