@@ -15,5 +15,8 @@ export const productExtrasFragment = `
   videos: metafield(namespace: "PDP", key: "videos") {
     value
   }
+  beforeafter: metafield(namespace: "custom", key: "beforeafter") {
+    value
+  }
 }
 `;
