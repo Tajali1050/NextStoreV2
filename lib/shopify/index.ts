@@ -33,6 +33,7 @@ import {
 } from "./queries/product";
 import { getSiteBannerQuery } from "./queries/site-banner";
 import { getVideosQuery } from "./queries/video";
+import { getImagesQuery } from "./queries/images";
 import {
   Cart,
   Collection,
@@ -62,6 +63,8 @@ import {
   ShopifyRemoveFromCartOperation,
   ShopifyUpdateCartOperation,
   ShopifyVideosOperation,
+  ShopifyImagesOperation,
+  BeforeAfter,
   SiteBanner,
 } from "./types";
 
@@ -203,6 +206,7 @@ export const reshapeProduct = (
     ratingAverage,
     internalRatings,
     videos,
+    beforeafter,
     ...rest
   } = product;
 
@@ -217,8 +221,23 @@ export const reshapeProduct = (
     ? (JSON.parse(internalRatings.value) as InternalRating[])
     : [];
   const videosArr = videos?.value
-    ? (JSON.parse(videos.value) as string[]).map((id) => ({ id, src: "", sources: undefined }))
+    ? (JSON.parse(videos.value) as string[]).map((id) => ({
+        id,
+        src: "",
+        sources: undefined,
+      }))
     : [];
+  let beforeafterObj: BeforeAfter | undefined;
+  if (beforeafter?.value) {
+    try {
+      const arr = JSON.parse(beforeafter.value) as string[];
+      if (Array.isArray(arr) && arr.length >= 2) {
+        beforeafterObj = { firstImage: arr[0], secondImage: arr[1] };
+      }
+    } catch {
+      beforeafterObj = undefined;
+    }
+  }
 
   return {
     ...rest,
@@ -229,6 +248,7 @@ export const reshapeProduct = (
     ratingAverage: ratingAverageNum,
     internalRatings: internalRatingsArr,
     videos: videosArr,
+    beforeafter: beforeafterObj,
   };
 };
 const reshapeProducts = (products: ShopifyProduct[]) => {
@@ -265,13 +285,36 @@ export async function getVideos(ids: string[]): Promise<Reel[]> {
       );
       const src = mp4?.url ?? node.sources[0].url;
       videos.push({
-        id: node.id, src,
-        sources: undefined
+        id: node.id,
+        src,
+        sources: undefined,
       });
     }
   }
 
   return videos;
+}
+
+export async function getImages(
+  ids: string[],
+): Promise<{ id: string; url: string }[]> {
+  if (!ids.length) return [];
+
+  const res = await shopifyFetch<ShopifyImagesOperation>({
+    query: getImagesQuery,
+    variables: { ids },
+  });
+
+  const nodes = res.body.data.nodes || [];
+  const images: { id: string; url: string }[] = [];
+
+  for (const node of nodes) {
+    if (node && node.image?.url) {
+      images.push({ id: node.id, url: node.image.url });
+    }
+  }
+
+  return images;
 }
 export async function createCart(): Promise<Cart> {
   const res = await shopifyFetch<ShopifyCreateCartOperation>({
@@ -480,7 +523,23 @@ export async function getProduct(handle: string): Promise<Product | undefined> {
     const ids = product.videos.map((v) => v.id);
     const sources = await getVideos(ids);
     const map = new Map(sources.map((v) => [v.id, v.src]));
-    product.videos = ids.map((id) => ({ id, src: map.get(id) || "", sources: [] }));
+    product.videos = ids.map((id) => ({
+      id,
+      src: map.get(id) || "",
+      sources: [],
+    }));
+  }
+  if (product && product.beforeafter) {
+    const ids = [
+      product.beforeafter.firstImage,
+      product.beforeafter.secondImage,
+    ];
+    const images = await getImages(ids);
+    const map = new Map(images.map((img) => [img.id, img.url]));
+    product.beforeafter = {
+      firstImage: map.get(product.beforeafter.firstImage) || "",
+      secondImage: map.get(product.beforeafter.secondImage) || "",
+    };
   }
   return product;
 }

@@ -83,6 +83,7 @@ export type Product = Omit<
   | "ratingAverage"
   | "internalRatings"
   | "videos"
+  | "beforeafter"
 > & {
   variants: ProductVariant[];
   images: Image[];
@@ -91,6 +92,7 @@ export type Product = Omit<
   ratingAverage?: number;
   internalRatings?: InternalRating[];
   videos?: Reel[];
+  beforeafter?: BeforeAfter;
 };
 
 export type ProductOption = {
@@ -159,6 +161,7 @@ export type ShopifyProduct = {
   ratingAverage?: { value: string } | null;
   internalRatings?: { value: string } | null;
   videos?: { value: string } | null;
+  beforeafter?: { value: string } | null;
 };
 
 export type ShopifyCartOperation = {
@@ -314,11 +317,30 @@ export type ShopifyVideosOperation = {
   };
 };
 
+export type ShopifyMediaImage = {
+  id: string;
+  image: Image;
+};
+
+export type ShopifyImagesOperation = {
+  data: {
+    nodes: (ShopifyMediaImage | null)[];
+  };
+  variables: {
+    ids: string[];
+  };
+};
+
 export interface InternalRating {
   image: string;
   rating: number;
   title: string;
   description: string;
+}
+
+export interface BeforeAfter {
+  firstImage: string;
+  secondImage: string;
 }
 
 export interface Reel {
