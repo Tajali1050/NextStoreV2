@@ -31,8 +31,8 @@ import {
   getProductRecommendationsQuery,
   getProductsQuery,
 } from "./queries/product";
-import { getVideosQuery } from "./queries/video";
 import { getSiteBannerQuery } from "./queries/site-banner";
+import { getVideosQuery } from "./queries/video";
 import {
   Cart,
   Collection,
@@ -40,10 +40,10 @@ import {
   GetSiteBannerResponse,
   Image,
   InternalRating,
-  Reel,
   Menu,
   Page,
   Product,
+  Reel,
   ShopifyAddToCartOperation,
   ShopifyCart,
   ShopifyCartOperation,
@@ -217,7 +217,7 @@ export const reshapeProduct = (
     ? (JSON.parse(internalRatings.value) as InternalRating[])
     : [];
   const videosArr = videos?.value
-    ? (JSON.parse(videos.value) as string[]).map((id) => ({ id, src: "" }))
+    ? (JSON.parse(videos.value) as string[]).map((id) => ({ id, src: "", sources: undefined }))
     : [];
 
   return {
@@ -231,7 +231,6 @@ export const reshapeProduct = (
     videos: videosArr,
   };
 };
-
 const reshapeProducts = (products: ShopifyProduct[]) => {
   const reshapedProducts = [];
 
@@ -260,18 +259,20 @@ export async function getVideos(ids: string[]): Promise<Reel[]> {
   const videos: Reel[] = [];
 
   for (const node of nodes) {
-    if (node && node.sources?.length) {
+    if (node && node.sources?.length && node.sources[0]?.url) {
       const mp4 = node.sources.find(
-        (s) => s.format === "mp4" && s.url.includes("1080p"),
+        (s) => s?.format === "mp4" && s?.url?.includes("1080p"),
       );
-      const src = mp4 ? mp4.url : node.sources[0].url;
-      videos.push({ id: node.id, src });
+      const src = mp4?.url ?? node.sources[0].url;
+      videos.push({
+        id: node.id, src,
+        sources: undefined
+      });
     }
   }
 
   return videos;
 }
-
 export async function createCart(): Promise<Cart> {
   const res = await shopifyFetch<ShopifyCreateCartOperation>({
     query: createCartMutation,
@@ -479,11 +480,10 @@ export async function getProduct(handle: string): Promise<Product | undefined> {
     const ids = product.videos.map((v) => v.id);
     const sources = await getVideos(ids);
     const map = new Map(sources.map((v) => [v.id, v.src]));
-    product.videos = ids.map((id) => ({ id, src: map.get(id) || "" }));
+    product.videos = ids.map((id) => ({ id, src: map.get(id) || "", sources: [] }));
   }
   return product;
 }
-
 export async function getProductRecommendations(
   productId: string,
 ): Promise<Product[]> {

@@ -35,8 +35,8 @@ export default function ProductReels({ videos }: ProductReelsProps) {
     <>
       <Swiper
         direction="horizontal"
-        slidesPerView={3}
-        spaceBetween={12}
+        slidesPerView={2.5}
+        spaceBetween={8}
         modules={[Navigation]}
         className="h-60 w-full max-w-100 overflow-hidden rounded-lg"
       >
@@ -50,6 +50,8 @@ export default function ProductReels({ videos }: ProductReelsProps) {
               <video
                 src={video.src}
                 muted
+                autoPlay
+                loop
                 playsInline
                 className="h-full w-full object-cover"
               />

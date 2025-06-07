@@ -6,6 +6,7 @@ import ProductReels from "components/ProductReels";
 import Prose from "components/prose";
 import { Product } from "lib/shopify/types";
 import Image from "next/image";
+import { CompareDemo } from "../ui/compareDemo";
 import { useSelectedVariant } from "./product-context";
 import RatingStars from "./ratingStars";
 import { VariantSelector } from "./variant-selector";
@@ -13,7 +14,6 @@ import { VariantSelector } from "./variant-selector";
 export function ProductDescription({ product }: { product: Product }) {
   const selectedVariant = useSelectedVariant(product.variants);
 
-  console.log("Printing videos length : " + product.videos);
   return (
     <>
       <div className="space-y-6">
@@ -80,6 +80,8 @@ export function ProductDescription({ product }: { product: Product }) {
         <AddToCart product={product} />
 
         <ProductReels videos={product.videos ?? []} />
+
+        <CompareDemo />
       </div>
     </>
   );

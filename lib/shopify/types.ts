@@ -48,6 +48,7 @@ export type Image = {
 };
 
 export interface Reel {
+  sources: any;
   id: string;
   src: string;
 }
