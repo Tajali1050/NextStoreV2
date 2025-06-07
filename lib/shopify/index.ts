@@ -225,9 +225,17 @@ export const reshapeProduct = (
         sources: undefined,
       }))
     : [];
-  const beforeafterObj = beforeafter?.value
-    ? (JSON.parse(beforeafter.value) as BeforeAfter)
-    : undefined;
+  let beforeafterObj: BeforeAfter | undefined;
+  if (beforeafter?.value) {
+    try {
+      const arr = JSON.parse(beforeafter.value) as string[];
+      if (Array.isArray(arr) && arr.length >= 2) {
+        beforeafterObj = { firstImage: arr[0], secondImage: arr[1] };
+      }
+    } catch {
+      beforeafterObj = undefined;
+    }
+  }
 
   return {
     ...rest,
