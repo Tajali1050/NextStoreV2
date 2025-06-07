@@ -296,6 +296,23 @@ export type ShopifyProductsOperation = {
   };
 };
 
+export type ShopifyVideo = {
+  id: string;
+  sources: {
+    url: string;
+    format: string;
+  }[];
+};
+
+export type ShopifyVideosOperation = {
+  data: {
+    nodes: (ShopifyVideo | null)[];
+  };
+  variables: {
+    ids: string[];
+  };
+};
+
 export interface InternalRating {
   image: string;
   rating: number;
