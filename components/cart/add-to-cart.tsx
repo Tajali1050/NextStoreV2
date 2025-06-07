@@ -7,7 +7,7 @@ import { addItem } from "components/cart/actions";
 import { useSelectedVariant } from "components/product/product-context";
 import { Product } from "lib/shopify/types";
 import Image from "next/image";
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { useCart } from "./cart-context";
 
 function SubmitButton({
@@ -74,12 +74,32 @@ export function AddToCart({ product }: { product: Product }) {
   const selectedVariant = useSelectedVariant(variants);
   const [message, formAction] = useActionState(addItem, null);
 
+  const formRef = useRef<HTMLFormElement>(null);
+  const [stuck, setStuck] = useState(false);
+
+  useEffect(() => {
+    const node = formRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setStuck(!entry.isIntersecting),
+      { threshold: 1 },
+    );
+    observer.observe(node);
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   const selectedVariantId = selectedVariant?.id;
   const addItemAction = formAction.bind(null, selectedVariantId);
   const finalVariant = selectedVariant;
 
   return (
     <form
+      ref={formRef}
+      className={clsx({
+        "fixed inset-x-0 bottom-0 z-50 bg-white p-4 shadow-md": stuck,
+      })}
       action={async () => {
         if (!finalVariant) return;
         addCartItem(finalVariant, product);
