@@ -33,6 +33,7 @@ import {
 } from "./queries/product";
 import { getSiteBannerQuery } from "./queries/site-banner";
 import { getVideosQuery } from "./queries/video";
+import { getImagesQuery } from "./queries/images";
 import {
   Cart,
   Collection,
@@ -62,6 +63,7 @@ import {
   ShopifyRemoveFromCartOperation,
   ShopifyUpdateCartOperation,
   ShopifyVideosOperation,
+  ShopifyImagesOperation,
   BeforeAfter,
   SiteBanner,
 } from "./types";
@@ -292,6 +294,28 @@ export async function getVideos(ids: string[]): Promise<Reel[]> {
 
   return videos;
 }
+
+export async function getImages(
+  ids: string[],
+): Promise<{ id: string; url: string }[]> {
+  if (!ids.length) return [];
+
+  const res = await shopifyFetch<ShopifyImagesOperation>({
+    query: getImagesQuery,
+    variables: { ids },
+  });
+
+  const nodes = res.body.data.nodes || [];
+  const images: { id: string; url: string }[] = [];
+
+  for (const node of nodes) {
+    if (node && node.image?.url) {
+      images.push({ id: node.id, url: node.image.url });
+    }
+  }
+
+  return images;
+}
 export async function createCart(): Promise<Cart> {
   const res = await shopifyFetch<ShopifyCreateCartOperation>({
     query: createCartMutation,
@@ -504,6 +528,18 @@ export async function getProduct(handle: string): Promise<Product | undefined> {
       src: map.get(id) || "",
       sources: [],
     }));
+  }
+  if (product && product.beforeafter) {
+    const ids = [
+      product.beforeafter.firstImage,
+      product.beforeafter.secondImage,
+    ];
+    const images = await getImages(ids);
+    const map = new Map(images.map((img) => [img.id, img.url]));
+    product.beforeafter = {
+      firstImage: map.get(product.beforeafter.firstImage) || "",
+      secondImage: map.get(product.beforeafter.secondImage) || "",
+    };
   }
   return product;
 }
