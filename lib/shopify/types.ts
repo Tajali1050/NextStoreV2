@@ -48,6 +48,7 @@ export type Image = {
 };
 
 export interface Reel {
+  sources: any;
   id: string;
   src: string;
 }
@@ -293,6 +294,23 @@ export type ShopifyProductsOperation = {
     query?: string;
     reverse?: boolean;
     sortKey?: string;
+  };
+};
+
+export type ShopifyVideo = {
+  id: string;
+  sources: {
+    url: string;
+    format: string;
+  }[];
+};
+
+export type ShopifyVideosOperation = {
+  data: {
+    nodes: (ShopifyVideo | null)[];
+  };
+  variables: {
+    ids: string[];
   };
 };
 
