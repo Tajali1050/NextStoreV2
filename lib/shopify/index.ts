@@ -62,6 +62,7 @@ import {
   ShopifyRemoveFromCartOperation,
   ShopifyUpdateCartOperation,
   ShopifyVideosOperation,
+  BeforeAfter,
   SiteBanner,
 } from "./types";
 
@@ -203,6 +204,7 @@ export const reshapeProduct = (
     ratingAverage,
     internalRatings,
     videos,
+    beforeafter,
     ...rest
   } = product;
 
@@ -217,8 +219,23 @@ export const reshapeProduct = (
     ? (JSON.parse(internalRatings.value) as InternalRating[])
     : [];
   const videosArr = videos?.value
-    ? (JSON.parse(videos.value) as string[]).map((id) => ({ id, src: "", sources: undefined }))
+    ? (JSON.parse(videos.value) as string[]).map((id) => ({
+        id,
+        src: "",
+        sources: undefined,
+      }))
     : [];
+  let beforeafterObj: BeforeAfter | undefined;
+  if (beforeafter?.value) {
+    try {
+      const arr = JSON.parse(beforeafter.value) as string[];
+      if (Array.isArray(arr) && arr.length >= 2) {
+        beforeafterObj = { firstImage: arr[0], secondImage: arr[1] };
+      }
+    } catch {
+      beforeafterObj = undefined;
+    }
+  }
 
   return {
     ...rest,
@@ -229,6 +246,7 @@ export const reshapeProduct = (
     ratingAverage: ratingAverageNum,
     internalRatings: internalRatingsArr,
     videos: videosArr,
+    beforeafter: beforeafterObj,
   };
 };
 const reshapeProducts = (products: ShopifyProduct[]) => {
@@ -265,8 +283,9 @@ export async function getVideos(ids: string[]): Promise<Reel[]> {
       );
       const src = mp4?.url ?? node.sources[0].url;
       videos.push({
-        id: node.id, src,
-        sources: undefined
+        id: node.id,
+        src,
+        sources: undefined,
       });
     }
   }
@@ -480,7 +499,11 @@ export async function getProduct(handle: string): Promise<Product | undefined> {
     const ids = product.videos.map((v) => v.id);
     const sources = await getVideos(ids);
     const map = new Map(sources.map((v) => [v.id, v.src]));
-    product.videos = ids.map((id) => ({ id, src: map.get(id) || "", sources: [] }));
+    product.videos = ids.map((id) => ({
+      id,
+      src: map.get(id) || "",
+      sources: [],
+    }));
   }
   return product;
 }
