@@ -24,6 +24,7 @@ import {
   getCollectionQuery,
   getCollectionsQuery,
 } from "./queries/collection";
+import { getImagesQuery } from "./queries/images";
 import { getMenuQuery } from "./queries/menu";
 import { getPageQuery, getPagesQuery } from "./queries/page";
 import {
@@ -33,8 +34,8 @@ import {
 } from "./queries/product";
 import { getSiteBannerQuery } from "./queries/site-banner";
 import { getVideosQuery } from "./queries/video";
-import { getImagesQuery } from "./queries/images";
 import {
+  BeforeAfter,
   Cart,
   Collection,
   Connection,
@@ -53,6 +54,7 @@ import {
   ShopifyCollectionProductsOperation,
   ShopifyCollectionsOperation,
   ShopifyCreateCartOperation,
+  ShopifyImagesOperation,
   ShopifyMenuOperation,
   ShopifyPageOperation,
   ShopifyPagesOperation,
@@ -63,8 +65,6 @@ import {
   ShopifyRemoveFromCartOperation,
   ShopifyUpdateCartOperation,
   ShopifyVideosOperation,
-  ShopifyImagesOperation,
-  BeforeAfter,
   SiteBanner,
 } from "./types";
 
@@ -210,7 +210,7 @@ export const reshapeProduct = (
     ...rest
   } = product;
 
-  const subtitleStr = subtitle?.value || undefined;
+  const subtitleStr = subtitle?.value ?? '';
   const benefitsArr = benefits?.value
     ? (JSON.parse(benefits.value) as string[])
     : [];
@@ -232,7 +232,7 @@ export const reshapeProduct = (
     try {
       const arr = JSON.parse(beforeafter.value) as string[];
       if (Array.isArray(arr) && arr.length >= 2) {
-        beforeafterObj = { firstImage: arr[0], secondImage: arr[1] };
+        beforeafterObj = { firstImage: arr[0]!, secondImage: arr[1]! };
       }
     } catch {
       beforeafterObj = undefined;
@@ -241,7 +241,7 @@ export const reshapeProduct = (
 
   return {
     ...rest,
-    images: reshapeImages(images, product.title),
+    images: reshapeImages(images, product.title ?? ''),
     variants: removeEdgesAndNodes(variants),
     subtitle: subtitleStr,
     benefits: benefitsArr,
@@ -251,8 +251,7 @@ export const reshapeProduct = (
     beforeafter: beforeafterObj,
   };
 };
-const reshapeProducts = (products: ShopifyProduct[]) => {
-  const reshapedProducts = [];
+const reshapeProducts = (products: ShopifyProduct[]) => {  const reshapedProducts = [];
 
   for (const product of products) {
     if (product) {

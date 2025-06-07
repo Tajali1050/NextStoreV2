@@ -14,6 +14,8 @@ import { VariantSelector } from "./variant-selector";
 export function ProductDescription({ product }: { product: Product }) {
   const selectedVariant = useSelectedVariant(product.variants);
 
+  console.log(product.beforeafter?.firstImage);
+
   return (
     <>
       <div className="space-y-6">
