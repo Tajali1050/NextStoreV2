@@ -81,7 +81,12 @@ export function ProductDescription({ product }: { product: Product }) {
 
         <ProductReels videos={product.videos ?? []} />
 
-        <CompareDemo />
+        {product.beforeafter?.firstImage && product.beforeafter?.secondImage ? (
+          <CompareDemo
+            firstImage={product.beforeafter.firstImage}
+            secondImage={product.beforeafter.secondImage}
+          />
+        ) : null}
       </div>
     </>
   );
