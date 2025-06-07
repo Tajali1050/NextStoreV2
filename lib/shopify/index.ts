@@ -216,7 +216,9 @@ export const reshapeProduct = (
   const internalRatingsArr = internalRatings?.value
     ? (JSON.parse(internalRatings.value) as InternalRating[])
     : [];
-  const videosArr = videos?.value ? (JSON.parse(videos.value) as Reel[]) : [];
+  const videosArr = videos?.value
+    ? (JSON.parse(videos.value) as string[]).map((id) => ({ id, src: "" }))
+    : [];
 
   return {
     ...rest,
@@ -259,7 +261,11 @@ export async function getVideos(ids: string[]): Promise<Reel[]> {
 
   for (const node of nodes) {
     if (node && node.sources?.length) {
-      videos.push({ id: node.id, src: node.sources[0].url });
+      const mp4 = node.sources.find(
+        (s) => s.format === "mp4" && s.url.includes("1080p"),
+      );
+      const src = mp4 ? mp4.url : node.sources[0].url;
+      videos.push({ id: node.id, src });
     }
   }
 
@@ -470,9 +476,7 @@ export async function getProduct(handle: string): Promise<Product | undefined> {
 
   const product = reshapeProduct(res.body.data.product, false);
   if (product && product.videos?.length) {
-    const ids = product.videos.map((v: any) =>
-      typeof v === "string" ? v : v.id,
-    );
+    const ids = product.videos.map((v) => v.id);
     const sources = await getVideos(ids);
     const map = new Map(sources.map((v) => [v.id, v.src]));
     product.videos = ids.map((id) => ({ id, src: map.get(id) || "" }));
